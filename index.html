@@ -1,0 +1,282 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Invoker Commands</title>
+</head>
+<body>
+<style>
+    @import "https://unpkg.com/open-props/easings.min.css";
+
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: rgb(160, 138, 245);
+        background: linear-gradient(90deg, rgba(160, 138, 245, 1) 0%, rgba(215, 175, 244, 1) 100%);
+        margin: 0;
+    }
+
+    .product-container {
+        background-color: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .product-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .product-description {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .price {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    button {
+        background-color: rgb(45, 38, 61);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border-radius: 5px;
+        margin: 0 10px;
+    }
+
+    button:hover {
+        background-color: #6b587f;
+    }
+
+    input[type="number"] {
+        width: 60px;
+        padding: 10px;
+        font-size: 16px;
+        text-align: center;
+        border: 2px solid rgb(45, 38, 61);
+        border-radius: 5px;
+        outline: none;
+    }
+
+    input[type="number"]:focus {
+        border-color: rgb(45, 38, 61);
+    }
+
+    .cart-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .add-to-cart {
+        background-color: #f05e31;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 5px;
+    }
+
+    .add-to-cart:hover {
+        background-color: #d94428;
+    }
+
+    /* Dialog Styling */
+    dialog {
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+        background: white;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        max-width: 80vw;
+        text-align: center;
+    }
+
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    dialog p {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    dialog button {
+        background-color: rgb(45, 38, 61);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+    }
+
+    dialog button:hover {
+        background-color: #6b587f;
+    }
+
+    #more-info {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        width: 200px;
+        font-size: 14px;
+        color: #333;
+        text-align: center;
+    }
+
+    #anchor {
+        anchor-name: --anchor;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    [popover] {
+        border: 1px solid;
+        padding: 1rem;
+        position: absolute;
+        width: 10rem;
+        position-anchor: --anchor;
+        inset-block-start: anchor(--anchor top);
+    }
+
+    section {
+        @layer {
+            * {
+                @media (prefers-reduced-motion: no-preference) {
+                    transition:
+                            opacity .5s ease-in,
+                            scale .5s ease-in,
+                            display .5s ease-in;
+                    transition-behavior: allow-discrete;
+                }
+
+                @starting-style {
+                    opacity: 0;
+                    scale: 1.15;
+                }
+
+                &[hidden] {
+                    opacity: 0;
+                    scale: 0.7;
+                    display: none;
+                    transition-duration: .3s;
+                }
+            }
+        }
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+
+        > div {
+            background-image: url(https://cdn.lisaangel.co.uk/image/cache/data/product-images/ss23/je/jellycat-amuseable-food-toys-4x3a4561-515x515.jpeg);
+            background-position: initial;
+            background-size: contain;
+            inline-size: 10ch;
+            aspect-ratio: 1;
+            border-radius: 8px;
+        }
+    }
+
+
+
+</style>
+
+<div class="product-container">
+    <section id="grid">
+        <img class="product-image"
+             src="https://cdn.lisaangel.co.uk/image/cache/data/product-images/ss23/je/jellycat-amuseable-taco-soft-toy-4x3a4482-515x515.jpeg"
+             alt="Product Image">
+    </section>
+    <div class="product-title">Soft Taco</div>
+    <div class="product-description">
+        This is a soft taco you MUST add to your cart.
+    </div>
+
+    <div class="cart-controls">
+        <button type="button" commandfor="value" command="step-down">-</button>
+        <input id="value" type="number" min="0" value="1"/>
+        <button type="button" commandfor="value" command="step-up">+</button>
+    </div>
+
+    <button commandfor="my-dialog" command="show-modal">Show Cart</button>
+
+    <dialog id="my-dialog">
+        <p>🛒 Your cart is full of soft tacos 🌮🌮🌮</p>
+
+        <button commandfor="my-dialog" command="close">Close</button>
+    </dialog>
+
+    <div>
+        <button id="anchor" commandfor="more-info" command="toggle-popover">Open popover</button>
+
+        <div id="more-info" popover="auto">This taco is very soft</div>
+    </div>
+
+    <button id="more-tacos" commandfor="more-tacos" command="--more">More taco's</button>
+    <button id="less-tacos" commandfor="less-tacos" command="--less">Less taco's</button>
+
+</div>
+</body>
+<script>
+    document.getElementById("more-tacos").addEventListener("command", (e) => {
+        if (e.command === "--more") {
+            const grid = document.getElementById("grid");
+
+            grid.appendChild(document.createElement('div'))
+        }
+    });
+
+    document.getElementById("less-tacos").addEventListener("command", async (e) => {
+        if (e.command === "--less") {
+            const grid = document.getElementById("grid");
+
+            let last = grid?.lastElementChild
+            last.hidden = true
+
+            await onTransitionsEnded(last)
+            last.remove();
+        }
+    });
+
+    function onTransitionsEnded(node) {
+        return Promise.allSettled(
+            node.getAnimations().map(animation =>
+                animation.finished))
+    }
+</script>
+</html>
